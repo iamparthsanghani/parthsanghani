@@ -69,5 +69,5 @@ class AppConstants{
   ];
 
   // resume link
-  static const String resumeLink = 'https://drive.google.com/file/d/1sh1dCpNylM_Jz5ZgK3-NWVtmK8-KloFc/view?usp=sharing';
+  static const String resumeLink = 'https://drive.google.com/file/d/1cFWiw8VQ9543Z3oZk9sBN8pN7P-eJlXi/view?usp=sharing';
 }
