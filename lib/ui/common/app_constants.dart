@@ -8,7 +8,7 @@ import '../views/about_view/aboutview.dart';
 import '../views/home_view/homeview.dart';
 import '../views/project_view/projectview.dart';
 
-class AppConstants{
+class AppConstants {
   static const List<String> navBarNames = [
     'HOME',
     'ABOUT',
@@ -23,7 +23,7 @@ class AppConstants{
     CupertinoIcons.phone
   ];
 
-  static const  List<Icon> socialIcons = [
+  static const List<Icon> socialIcons = [
     Icon(FontAwesomeIcons.linkedin, color: Colors.blue),
     Icon(FontAwesomeIcons.github, color: Colors.black),
     Icon(FontAwesomeIcons.solidEnvelope, color: Colors.red),
@@ -58,9 +58,9 @@ class AppConstants{
       'title': 'Location',
       'subTitle': 'Surat, Gujarat, India'
     }
-    ];
+  ];
 
-  static  List<Widget> views = [
+  static List<Widget> views = [
     const HomeView(),
     const AboutView(),
     const ProjectView(),
@@ -69,5 +69,6 @@ class AppConstants{
   ];
 
   // resume link
-  static const String resumeLink = 'https://drive.google.com/file/d/1cFWiw8VQ9543Z3oZk9sBN8pN7P-eJlXi/view?usp=sharing';
+  static const String resumeLink =
+      'https://drive.google.com/file/d/1Z8BqKNiPWzyRX_1M3QDKLVurn7Te-yLd/view?usp=sharing';
 }

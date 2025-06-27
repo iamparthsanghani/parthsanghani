@@ -93,8 +93,28 @@ class HomeViewDesktop extends StackedView<HomeViewModel> {
         const Spacer(),
         Column(
           children: [
-            Image.asset('assets/images/ezgif-3-7162fb7e6d.gif',
-                width: thirdScreenWidth(context)),
+            Image.asset(
+              'assets/images/ezgif-3-7162fb7e6d.gif',
+              width: thirdScreenWidth(context),
+              errorBuilder: (context, error, stackTrace) {
+                // Fallback to hand_weaving.gif if the main GIF fails
+                return Image.asset(
+                  'assets/images/monitor.gif',
+                  width: thirdScreenWidth(context),
+                  errorBuilder: (context, error, stackTrace) {
+                    // Final fallback with a placeholder
+                    return Container(
+                      width: thirdScreenWidth(context),
+                      height: thirdScreenWidth(context) * 0.8,
+                      decoration: BoxDecoration(
+                        color: AppColors.primaryDarkColor,
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                    );
+                  },
+                );
+              },
+            ),
           ],
         ),
         SizedBox(width: screenWidthFraction(context) * 0.05),

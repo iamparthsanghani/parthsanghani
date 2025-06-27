@@ -148,8 +148,8 @@ class ProjectDetailsDialog extends StackedView<ProjectDetailsDialogModel> {
                                     padding: const EdgeInsets.all(10),
                                     child: SkillWidget(
                                       skill_img: tech,
-                                      color:
-                                          AppColors.primaryDarkColor.withOpacity(0.5),
+                                      color: AppColors.primaryDarkColor
+                                          .withOpacity(0.5),
                                     )),
                               ))
                           .toList(),
@@ -169,92 +169,309 @@ class ProjectDetailsDialog extends StackedView<ProjectDetailsDialogModel> {
                           verticalSpaceSmall,
                           Padding(
                             padding: const EdgeInsets.all(10.0),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  viewModel.selectedProject.projectTitle,
-                                  style: AppTextStyles.mainHeading!
-                                      .copyWith(fontWeight: FontWeight.bold),
-                                  textAlign: TextAlign.center,
-                                ),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    if (viewModel
-                                        .selectedProject.androidLink.isNotEmpty)
-                                      InkWell(
-                                        onTap: () {
-                                          _urlLauncherService.launchInBrowser(
-                                              viewModel
-                                                  .selectedProject.androidLink);
-                                        },
-                                        child: Container(
-                                          padding: const EdgeInsets.symmetric(
-                                              vertical: 5, horizontal: 5),
-                                          decoration: BoxDecoration(
-                                              color: Colors.white,
-                                              borderRadius:
-                                                  BorderRadius.circular(4)),
-                                          child: Row(
-                                            children: [
-                                              Image.asset(
-                                                'assets/images/android.png',
-                                                height: 20,
-                                                width: 20,
-                                              ),
-                                              const SizedBox(
-                                                width: 4,
-                                              ),
-                                              const Text(
-                                                'Google Play',
-                                                style: TextStyle(
-                                                    fontSize: 12,
-                                                    color: Colors.black,
-                                                    fontWeight: FontWeight.bold),
-                                              )
-                                            ],
+                            child: getValueForScreenType(
+                              context: context,
+                              mobile: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    viewModel.selectedProject.projectTitle,
+                                    style: AppTextStyles.mainHeading!
+                                        .copyWith(fontWeight: FontWeight.bold),
+                                    textAlign: TextAlign.start,
+                                  ),
+                                  verticalSpaceTiny,
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      if (viewModel.selectedProject.androidLink
+                                          .isNotEmpty)
+                                        InkWell(
+                                          onTap: () {
+                                            _urlLauncherService.launchInBrowser(
+                                                viewModel.selectedProject
+                                                    .androidLink);
+                                          },
+                                          child: Container(
+                                            padding: const EdgeInsets.symmetric(
+                                                vertical: 5, horizontal: 5),
+                                            decoration: BoxDecoration(
+                                                color: Colors.white,
+                                                borderRadius:
+                                                    BorderRadius.circular(4)),
+                                            child: Row(
+                                              mainAxisSize: MainAxisSize.min,
+                                              children: [
+                                                Image.asset(
+                                                  'assets/images/android.png',
+                                                  height: 16,
+                                                  width: 16,
+                                                ),
+                                                const SizedBox(
+                                                  width: 4,
+                                                ),
+                                                const Text(
+                                                  'Google Play',
+                                                  style: TextStyle(
+                                                      fontSize: 10,
+                                                      color: Colors.black,
+                                                      fontWeight:
+                                                          FontWeight.bold),
+                                                )
+                                              ],
+                                            ),
                                           ),
                                         ),
-                                      ),
-                                    if (viewModel
-                                        .selectedProject.androidLink.isNotEmpty)
-                                      SizedBox(width: screenWidth(context) * 0.01),
-                                    if (viewModel
-                                        .selectedProject.iosLink.isNotEmpty)
-                                      InkWell(
-                                        onTap: () {
-                                          _urlLauncherService.launchInBrowser(
-                                              viewModel.selectedProject.iosLink);
-                                        },
-                                        child: Container(
-                                          padding: const EdgeInsets.symmetric(
-                                              vertical: 5, horizontal: 5),
-                                          decoration: BoxDecoration(
-                                              color: Colors.white,
-                                              borderRadius:
-                                                  BorderRadius.circular(4)),
-                                          child: Row(
-                                            children: [
-                                              Image.asset('assets/images/apple.png',
-                                                  height: 20, width: 20),
-                                              const SizedBox(
-                                                width: 4,
-                                              ),
-                                              const Text(
-                                                'App Store',
-                                                style: TextStyle(
-                                                    fontSize: 12,
-                                                    color: Colors.black,
-                                                    fontWeight: FontWeight.bold),
-                                              )
-                                            ],
+                                      if (viewModel.selectedProject.androidLink
+                                          .isNotEmpty)
+                                        SizedBox(
+                                            width: screenWidth(context) * 0.02),
+                                      if (viewModel
+                                          .selectedProject.iosLink.isNotEmpty)
+                                        InkWell(
+                                          onTap: () {
+                                            _urlLauncherService.launchInBrowser(
+                                                viewModel
+                                                    .selectedProject.iosLink);
+                                          },
+                                          child: Container(
+                                            padding: const EdgeInsets.symmetric(
+                                                vertical: 5, horizontal: 5),
+                                            decoration: BoxDecoration(
+                                                color: Colors.white,
+                                                borderRadius:
+                                                    BorderRadius.circular(4)),
+                                            child: Row(
+                                              mainAxisSize: MainAxisSize.min,
+                                              children: [
+                                                Image.asset(
+                                                    'assets/images/apple.png',
+                                                    height: 16,
+                                                    width: 16),
+                                                const SizedBox(
+                                                  width: 4,
+                                                ),
+                                                const Text(
+                                                  'App Store',
+                                                  style: TextStyle(
+                                                      fontSize: 10,
+                                                      color: Colors.black,
+                                                      fontWeight:
+                                                          FontWeight.bold),
+                                                )
+                                              ],
+                                            ),
                                           ),
                                         ),
-                                      ),
-                                  ],
-                                ),
-                              ],
+                                    ],
+                                  ),
+                                ],
+                              ),
+                              tablet: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    viewModel.selectedProject.projectTitle,
+                                    style: AppTextStyles.mainHeading!
+                                        .copyWith(fontWeight: FontWeight.bold),
+                                    textAlign: TextAlign.start,
+                                  ),
+                                  verticalSpaceTiny,
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      if (viewModel.selectedProject.androidLink
+                                          .isNotEmpty)
+                                        InkWell(
+                                          onTap: () {
+                                            _urlLauncherService.launchInBrowser(
+                                                viewModel.selectedProject
+                                                    .androidLink);
+                                          },
+                                          child: Container(
+                                            padding: const EdgeInsets.symmetric(
+                                                vertical: 5, horizontal: 5),
+                                            decoration: BoxDecoration(
+                                                color: Colors.white,
+                                                borderRadius:
+                                                    BorderRadius.circular(4)),
+                                            child: Row(
+                                              mainAxisSize: MainAxisSize.min,
+                                              children: [
+                                                Image.asset(
+                                                  'assets/images/android.png',
+                                                  height: 18,
+                                                  width: 18,
+                                                ),
+                                                const SizedBox(
+                                                  width: 4,
+                                                ),
+                                                const Text(
+                                                  'Google Play',
+                                                  style: TextStyle(
+                                                      fontSize: 11,
+                                                      color: Colors.black,
+                                                      fontWeight:
+                                                          FontWeight.bold),
+                                                )
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      if (viewModel.selectedProject.androidLink
+                                          .isNotEmpty)
+                                        SizedBox(
+                                            width: screenWidth(context) * 0.02),
+                                      if (viewModel
+                                          .selectedProject.iosLink.isNotEmpty)
+                                        InkWell(
+                                          onTap: () {
+                                            _urlLauncherService.launchInBrowser(
+                                                viewModel
+                                                    .selectedProject.iosLink);
+                                          },
+                                          child: Container(
+                                            padding: const EdgeInsets.symmetric(
+                                                vertical: 5, horizontal: 5),
+                                            decoration: BoxDecoration(
+                                                color: Colors.white,
+                                                borderRadius:
+                                                    BorderRadius.circular(4)),
+                                            child: Row(
+                                              mainAxisSize: MainAxisSize.min,
+                                              children: [
+                                                Image.asset(
+                                                    'assets/images/apple.png',
+                                                    height: 18,
+                                                    width: 18),
+                                                const SizedBox(
+                                                  width: 4,
+                                                ),
+                                                const Text(
+                                                  'App Store',
+                                                  style: TextStyle(
+                                                      fontSize: 11,
+                                                      color: Colors.black,
+                                                      fontWeight:
+                                                          FontWeight.bold),
+                                                )
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                              desktop: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Expanded(
+                                    flex: 2,
+                                    child: Text(
+                                      viewModel.selectedProject.projectTitle,
+                                      style: AppTextStyles.mainHeading!
+                                          .copyWith(
+                                              fontWeight: FontWeight.bold),
+                                      textAlign: TextAlign.start,
+                                    ),
+                                  ),
+                                  Expanded(
+                                    flex: 1,
+                                    child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.end,
+                                      children: [
+                                        if (viewModel.selectedProject
+                                            .androidLink.isNotEmpty)
+                                          InkWell(
+                                            onTap: () {
+                                              _urlLauncherService
+                                                  .launchInBrowser(viewModel
+                                                      .selectedProject
+                                                      .androidLink);
+                                            },
+                                            child: Container(
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                      vertical: 5,
+                                                      horizontal: 5),
+                                              decoration: BoxDecoration(
+                                                  color: Colors.white,
+                                                  borderRadius:
+                                                      BorderRadius.circular(4)),
+                                              child: Row(
+                                                mainAxisSize: MainAxisSize.min,
+                                                children: [
+                                                  Image.asset(
+                                                    'assets/images/android.png',
+                                                    height: 20,
+                                                    width: 20,
+                                                  ),
+                                                  const SizedBox(
+                                                    width: 4,
+                                                  ),
+                                                  const Text(
+                                                    'Google Play',
+                                                    style: TextStyle(
+                                                        fontSize: 12,
+                                                        color: Colors.black,
+                                                        fontWeight:
+                                                            FontWeight.bold),
+                                                  )
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                        if (viewModel.selectedProject
+                                            .androidLink.isNotEmpty)
+                                          SizedBox(
+                                              width:
+                                                  screenWidth(context) * 0.01),
+                                        if (viewModel
+                                            .selectedProject.iosLink.isNotEmpty)
+                                          InkWell(
+                                            onTap: () {
+                                              _urlLauncherService
+                                                  .launchInBrowser(viewModel
+                                                      .selectedProject.iosLink);
+                                            },
+                                            child: Container(
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                      vertical: 5,
+                                                      horizontal: 5),
+                                              decoration: BoxDecoration(
+                                                  color: Colors.white,
+                                                  borderRadius:
+                                                      BorderRadius.circular(4)),
+                                              child: Row(
+                                                mainAxisSize: MainAxisSize.min,
+                                                children: [
+                                                  Image.asset(
+                                                      'assets/images/apple.png',
+                                                      height: 20,
+                                                      width: 20),
+                                                  const SizedBox(
+                                                    width: 4,
+                                                  ),
+                                                  const Text(
+                                                    'App Store',
+                                                    style: TextStyle(
+                                                        fontSize: 12,
+                                                        color: Colors.black,
+                                                        fontWeight:
+                                                            FontWeight.bold),
+                                                  )
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                           verticalSpaceTiny,
@@ -277,7 +494,6 @@ class ProjectDetailsDialog extends StackedView<ProjectDetailsDialogModel> {
                   ],
                 ),
               ),
-
             ],
           ),
         ),

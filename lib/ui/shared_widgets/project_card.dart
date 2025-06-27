@@ -56,76 +56,88 @@ class ProjectCardState extends State<ProjectCard> {
               children: [
                 // Show detailed info on hover
                 if (isHover)
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Image.asset(
-                        widget.project.projectIcon,
-                        height: screenHeight(context) * 0.05,
-                      ),
-                      verticalSpaceSmall,
-                      Text(
-                        widget.project.projectTitle,
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: getValueForScreenType(
-                            context: context,
-                            desktop: 15,
-                            tablet: 14,
-                            mobile: 13,
+                  Container(
+                    padding: const EdgeInsets.all(8),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Flexible(
+                          child: Image.asset(
+                            widget.project.projectIcon,
+                            height: screenHeight(context) * 0.04,
+                            fit: BoxFit.contain,
                           ),
-                          fontWeight: FontWeight.bold,
                         ),
-                        textAlign: TextAlign.center,
-                      ),
-                      verticalSpaceSmall,
-                      Row(
-                        children: [
-                          Expanded(
-                            child: Text(
-                              widget.project.shortDescription,
-                              textAlign: TextAlign.center,
-                              softWrap: true,
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: getValueForScreenType(
-                                  context: context,
-                                  desktop: 12,
-                                  tablet: 11,
-                                  mobile: 10,
-                                ),
+                        verticalSpaceSmall,
+                        Flexible(
+                          child: Text(
+                            widget.project.projectTitle,
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: getValueForScreenType(
+                                context: context,
+                                desktop: 14,
+                                tablet: 13,
+                                mobile: 12,
                               ),
-                              overflow: TextOverflow.ellipsis,
-                              maxLines: 3,
+                              fontWeight: FontWeight.bold,
                             ),
-                          ),
-                        ],
-                      ),
-                      SizedBox(height: screenWidth(context) * 0.01),
-                      Text(
-                        "View Project Details",
-                        style: AppTextStyles.l1b!.copyWith(
-                          fontSize: getValueForScreenType(
-                            context: context,
-                            desktop: 10,
-                            tablet: 9,
-                            mobile: 8,
+                            textAlign: TextAlign.center,
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
                           ),
                         ),
-                      ),
-                    ],
+                        verticalSpaceSmall,
+                        Flexible(
+                          child: Text(
+                            widget.project.shortDescription,
+                            textAlign: TextAlign.center,
+                            softWrap: true,
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: getValueForScreenType(
+                                context: context,
+                                desktop: 11,
+                                tablet: 10,
+                                mobile: 9,
+                              ),
+                            ),
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 2,
+                          ),
+                        ),
+                        SizedBox(height: screenWidth(context) * 0.008),
+                        Flexible(
+                          child: Text(
+                            "View Project Details",
+                            style: AppTextStyles.l1b!.copyWith(
+                              fontSize: getValueForScreenType(
+                                context: context,
+                                desktop: 9,
+                                tablet: 8,
+                                mobile: 7,
+                              ),
+                            ),
+                            textAlign: TextAlign.center,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
 
                 // Show banner when not hovered
                 AnimatedOpacity(
                   duration: const Duration(milliseconds: 600),
                   opacity: isHover ? 0.0 : 1.0,
-                  child: FittedBox(
-                    fit: BoxFit.fill,
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(20),
-                      child: Image.asset(
-                        widget.project.bannerList[0],
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      image: DecorationImage(
+                        image: AssetImage(widget.project.bannerList[0]),
+                        fit: BoxFit.cover,
                       ),
                     ),
                   ),
